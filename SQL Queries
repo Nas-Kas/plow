@@ -1,0 +1,26 @@
+SQL Queries
+#Count all the records that have the value “page_view” 
+#in the field event of the ’events’ table in the ’atomic’ schema.
+
+SELECT COUNT(*)
+FROM atomic.events
+WHERE event = 'page_view'
+
+#There are 2 tables which share the same field ’id’. 
+#Select the first 100 records from both tables, ’events’ 
+#and ’contexts’, where the values of the field ’id’ match.
+
+SELECT TOP 100
+FROM events 
+JOIN contexts
+ON events.id = contexts.id
+
+
+#Copy records for which ’timestamp’ field equals 
+#“2017-10-05 00:11:54” from ’events’ table
+#into table ’events_new’ in ’atomic’ schema.
+
+INSERT INTO events_new
+SELECT * FROM atomic.events
+WHERE timestamp = "2017-10-05 00:11:54"
+
